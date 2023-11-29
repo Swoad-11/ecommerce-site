@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+
 import {
   persistStore,
   persistReducer,
@@ -9,6 +10,7 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
+
 import storage from "redux-persist/lib/storage";
 import orebiReducer from "./orebiSlice";
 

@@ -55,4 +55,5 @@ export const {
   deleteItem,
   resetCart,
 } = orebiSlice.actions;
+
 export default orebiSlice.reducer;
