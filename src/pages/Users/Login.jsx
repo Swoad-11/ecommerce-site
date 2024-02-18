@@ -95,9 +95,6 @@ const Login = () => {
       {/* image */}
       <div className="md:block hidden w-1/2">
         <img className="rounded-2xl mx-auto" src={logotp} alt="Login" />
-        <h3 className="uppercase text-center text-gray-900 text-2xl font-bold">
-          Ipsita Mart
-        </h3>
       </div>
     </div>
   );

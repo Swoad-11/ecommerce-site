@@ -6,7 +6,8 @@ const Footer = () => {
   return (
     <div className="footerClass ">
       <footer
-        className="grid justify-items-center max-[540px]:place-items-start max-[280px]:place-items-center 
+        className="grid justify-items-center max-[540px]:place-items-start
+         max-[280px]:place-items-center 
         sm:grid-cols-4 max-[540px]:grid-cols-2 footer
        p-6 bg-base-200 text-base-content"
       >
@@ -82,7 +83,7 @@ const Footer = () => {
             className="fill-current"
           ></img>
           <h3 className="font-semibold">
-            <span className="text-lg">IPSITA Computer Pte Ltd.</span>
+            <span className="text-lg">TechShop Pte Ltd.</span>
             <br />
             Providing reliable tech since 1994
           </h3>

@@ -10,10 +10,10 @@ import svg3 from "./home/upsection/giftbox-svgrepo.4967cfa8.svg";
 import svg4 from "./home/upsection/icon_tradein.abb5ff8b.svg";
 import svg5 from "./home/upsection/verification-code.6637e985.svg";
 
-//ipsita logo
-import logo2 from "./ipsita.png";
-import logo from "./logo-outline.png";
-import logotp from "./ipsita-logo.png";
+//site logo
+import logo2 from "./logo1.png";
+import logo from "./logo2.png";
+import logotp from "./logo1.png";
 
 // Best Sellers
 import bestSellerOne from "./products/bestSeller/bestSellerOne.webp";
