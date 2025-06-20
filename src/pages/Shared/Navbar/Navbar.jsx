@@ -167,15 +167,6 @@ const Navbar = () => {
             <li className="flex items-center">
               <Link
                 className="flex items-center py-2 px-2 text-gray-200 rounded md:p-0"
-                to="/compare"
-              >
-                <FaCodeCompare className="mr-1" />
-                <span>Compare</span>
-              </Link>
-            </li>
-            <li className="flex items-center">
-              <Link
-                className="flex items-center py-2 px-2 text-gray-200 rounded md:p-0"
                 to="/login"
               >
                 <FaRegUser className="mr-1" />

@@ -6,7 +6,7 @@ const imageSources = [img1, img2, img3];
 
 const Banner = () => {
   return (
-    <div className="max-w-4xl">
+    <>
       <Carousel
         className="carousel-root"
         showThumbs={false}
@@ -27,7 +27,7 @@ const Banner = () => {
           </a>
         ))}
       </Carousel>
-    </div>
+    </>
   );
 };
 

@@ -88,14 +88,14 @@ const categories = [
 
 const Category = () => {
   return (
-    <section className="mb-12">
+    <section className="mb-12 mx-4">
       <SectionTitle
         subHeading={"Get Your Desired Product from Featured Category!"}
         heading={"Featured Category"}
       />
       <div
         className="cat-items-wrap grid grid-cols-2 min-[960px]:grid-cols-8
-       min-[700px]:grid-cols-4 sm:grid-cols-3 gap-4"
+       min-[700px]:grid-cols-4 min-[650px]:grid-cols-3 gap-4"
       >
         {categories.map((category, index) => (
           <CategoryItem key={index} {...category} />

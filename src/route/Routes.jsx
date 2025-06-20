@@ -3,7 +3,6 @@ import Main from "../layout/Main";
 import Home from "./../pages/Home/Home/Home";
 import ProductDetails from "./../pages/ProductDetails/ProductDetails";
 import Wishlist from "./../pages/Wishlist/Wishlist";
-import Compare from "./../pages/Compare/Compare";
 import Products from "./../pages/Products/Products";
 import Signup from "./../pages/Users/Signup";
 import Login from "./../pages/Users/Login";
@@ -19,7 +18,6 @@ const routes = [
       { path: "products", element: <Products /> },
       { path: "product/:productId", element: <ProductDetails /> },
       { path: "wishlist", element: <Wishlist /> },
-      { path: "compare", element: <Compare /> },
       { path: "signup", element: <Signup /> },
       { path: "login", element: <Login /> },
       { path: "profile", element: <Profile /> },

@@ -9,8 +9,9 @@ import YearProduct from "../YearProduct/YearProduct";
 
 const Home = () => {
   return (
-    <div className="max-w-screen-xl mx-auto">
-      <div className="flex max-[1024px]:flex-col gap-8 mb-8 m-auto pt-16 max-[1024px]:pb-0 items-center">
+    <>
+      <title>TechShop | Home</title>
+      <div className="flex max-[1024px]:flex-col gap-8 mb-8 m-auto pt-16 max-[1024px]:pb-0 items-center mx-4">
         <div className="basis-3/4">
           <Banner />
         </div>
@@ -26,7 +27,7 @@ const Home = () => {
       <OfferBanner />
       <SpecialOffers />
       <YearProduct />
-    </div>
+    </>
   );
 };
 

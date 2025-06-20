@@ -1,16 +1,16 @@
-import Product from "../../../components/Products/Product";
 import { spfOne, spfTwo, spfThree, spfFour } from "../../../assets/index";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
+import ProductCard from "../../../components/ProductCard/ProductCard";
 
 const SpecialOffers = () => {
   return (
-    <div className="w-full mb-12">
+    <div className="w-full mb-12 px-4">
       <SectionTitle
         heading={"Special Offers"}
         subHeading={"Exclusive Offers Just for You"}
       />
-      <div className="w-full grid grid-cols-2 md:grid-cols-2 max-[495px]:grid-cols-1 xl:grid-cols-4 gap-10 mx-auto">
-        <Product
+      <div className="w-full grid grid-cols-2 md:grid-cols-2 max-[495px]:grid-cols-1 xl:grid-cols-4 gap-10 justify-items-center">
+        <ProductCard
           _id="1101"
           img={spfOne}
           productName="A4tech Bloody M590i Gaming Headphone"
@@ -20,7 +20,7 @@ const SpecialOffers = () => {
           badge={true}
           des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
         />
-        <Product
+        <ProductCard
           _id="1102"
           img={spfTwo}
           productName="PS4 Dualshock 4 Wireless Controller Steel Glacier White"
@@ -30,7 +30,7 @@ const SpecialOffers = () => {
           badge={true}
           des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
         />
-        <Product
+        <ProductCard
           _id="1103"
           img={spfThree}
           productName="Mibro Watch GS GPS Sports Smart Watch"
@@ -40,7 +40,7 @@ const SpecialOffers = () => {
           badge={true}
           des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
         />
-        <Product
+        <ProductCard
           _id="1104"
           img={spfFour}
           productName="Hoco HC9 Dazzling Pulse Wireless Bluetooth Speaker"

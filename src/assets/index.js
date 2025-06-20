@@ -5,10 +5,10 @@ import img3 from "./home/banner/stel-laptop-deal-home-banner-982x500.webp";
 
 //upsection
 import svg1 from "./home/upsection/bag-of-money.5c717061.svg";
-import svg2 from "./home/upsection/fast-delivery.db7d62de.svg";
-import svg3 from "./home/upsection/giftbox-svgrepo.4967cfa8.svg";
-import svg4 from "./home/upsection/icon_tradein.abb5ff8b.svg";
-import svg5 from "./home/upsection/verification-code.6637e985.svg";
+import svg2 from "./home/upsection/truck.svg";
+import svg3 from "./home/upsection/quality.svg";
+import svg4 from "./home/upsection/secure.svg";
+import svg5 from "./home/upsection/service.svg";
 
 //site logo
 import logo2 from "./logo1.png";
