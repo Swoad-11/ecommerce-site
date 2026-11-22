@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import {
   persistStore,
   persistReducer,
@@ -10,18 +10,25 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import orebiReducer from "./orebiSlice";
+import cartReducer from "./slices/cartSlice";
+import wishlistReducer from "./slices/wishlistSlice";
+import authReducer from "./slices/authSlice";
+import ordersReducer from "./slices/ordersSlice";
 
-const persistConfig = {
-  key: "root",
-  version: 1,
-  storage,
-};
+const rootReducer = combineReducers({
+  cart: cartReducer,
+  wishlist: wishlistReducer,
+  auth: authReducer,
+  orders: ordersReducer,
+});
 
-const persistedReducer = persistReducer(persistConfig, orebiReducer);
+const persistedReducer = persistReducer(
+  { key: "techshop", version: 1, storage },
+  rootReducer
+);
 
 export const store = configureStore({
-  reducer: { orebiReducer: persistedReducer },
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
@@ -30,4 +37,4 @@ export const store = configureStore({
     }),
 });
 
-export let persistor = persistStore(store);
+export const persistor = persistStore(store);

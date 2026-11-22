@@ -1,33 +1,30 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
+import { Link } from "react-router-dom";
 import { img1, img2, img3 } from "../../../assets/index";
 
-const imageSources = [img1, img2, img3];
+const slides = [
+  { img: img1, alt: "Discount on app orders", to: "/products" },
+  { img: img2, alt: "Deals on home appliances", to: "/products" },
+  { img: img3, alt: "Laptop deals", to: "/products?category=laptop" },
+];
 
 const Banner = () => {
   return (
-    <>
-      <Carousel
-        className="carousel-root"
-        showThumbs={false}
-        showStatus={false}
-        infiniteLoop={true}
-        autoPlay={true}
-        interval={5000}
-      >
-        {imageSources.map((imgSrc, index) => (
-          <a
-            key={index}
-            href={``}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="items-center justify-center cursor-pointer block"
-          >
-            <img src={imgSrc} alt={`Slide ${index + 1}`} className="w-full" />
-          </a>
-        ))}
-      </Carousel>
-    </>
+    <Carousel
+      showThumbs={false}
+      showStatus={false}
+      infiniteLoop
+      autoPlay
+      interval={5000}
+      emulateTouch
+    >
+      {slides.map((slide) => (
+        <Link key={slide.alt} to={slide.to} className="block">
+          <img src={slide.img} alt={slide.alt} className="w-full" />
+        </Link>
+      ))}
+    </Carousel>
   );
 };
 

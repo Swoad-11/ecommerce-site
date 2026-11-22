@@ -1,32 +1,38 @@
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { RiShoppingCart2Fill } from "react-icons/ri";
 import { MdSwitchAccount } from "react-icons/md";
+import { selectCartCount } from "../../redux/slices/cartSlice";
+import { selectCurrentUser } from "../../redux/slices/authSlice";
 
+const tileClass =
+  "group relative flex h-[70px] w-16 cursor-pointer flex-col items-center justify-center gap-1 overflow-x-hidden rounded-r-md bg-white text-[#33475b] shadow-testShadow hover:bg-[#33475b] hover:text-white";
+
+// Floating quick links on the left edge (desktop only).
 const SpecialCase = () => {
+  const cartCount = useSelector(selectCartCount);
+  const user = useSelector(selectCurrentUser);
+
   return (
-    <div className="fixed top-52 z-20 hidden md:flex flex-col gap-2 ">
-      <Link to="/login">
-        <div className="bg-gray-50 hover:bg-[#33475b] w-16 h-[70px] rounded-r-md flex flex-col gap-1 text-[#33475b] hover:text-gray-50 justify-center items-center shadow-testShadow overflow-x-hidden group cursor-pointer">
-          <div className="flex justify-center items-center">
-            <MdSwitchAccount className="text-2xl -translate-x-12 group-hover:translate-x-3 transition-transform duration-200" />
-
-            <MdSwitchAccount className="text-2xl -translate-x-3 group-hover:translate-x-12 transition-transform duration-200" />
-          </div>
-          <p className="text-xs font-semibold font-titleFont">Profile</p>
+    <div className="fixed top-52 z-20 hidden flex-col gap-2 min-[1440px]:flex">
+      <Link to={user ? "/profile" : "/login"} className={tileClass}>
+        <div className="flex items-center justify-center">
+          <MdSwitchAccount className="-translate-x-12 text-2xl transition-transform duration-200 group-hover:translate-x-3" />
+          <MdSwitchAccount className="-translate-x-3 text-2xl transition-transform duration-200 group-hover:translate-x-12" />
         </div>
+        <p className="text-xs font-semibold">{user ? "Profile" : "Login"}</p>
       </Link>
-      <Link to="/cart">
-        <div className="bg-gray-50 hover:bg-[#33475b] w-16 h-[70px] rounded-r-md flex flex-col gap-1 text-[#33475b] hover:text-gray-50 justify-center items-center shadow-testShadow overflow-x-hidden group cursor-pointer relative">
-          <div className="flex justify-center items-center">
-            <RiShoppingCart2Fill className="text-2xl -translate-x-12 group-hover:translate-x-3 transition-transform duration-200" />
-
-            <RiShoppingCart2Fill className="text-2xl -translate-x-3 group-hover:translate-x-12 transition-transform duration-200" />
-          </div>
-          <p className="text-xs font-semibold font-titleFont">Buy Now</p>
-          <p className="absolute top-1 right-2 bg-primeColor  text-xs w-4 h-4 rounded-full flex items-center justify-center font-semibold">
-            0
-          </p>
+      <Link to="/cart" className={tileClass}>
+        <div className="flex items-center justify-center">
+          <RiShoppingCart2Fill className="-translate-x-12 text-2xl transition-transform duration-200 group-hover:translate-x-3" />
+          <RiShoppingCart2Fill className="-translate-x-3 text-2xl transition-transform duration-200 group-hover:translate-x-12" />
         </div>
+        <p className="text-xs font-semibold">Cart</p>
+        {cartCount > 0 && (
+          <p className="absolute right-1 top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-semibold text-white">
+            {cartCount}
+          </p>
+        )}
       </Link>
     </div>
   );

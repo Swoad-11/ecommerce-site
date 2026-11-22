@@ -3,25 +3,23 @@ import { yearImg } from "../../../assets/index";
 
 const YearProduct = () => {
   return (
-    <div
-      className="hero min-h-[50vh] mb-12"
-      style={{
-        backgroundImage: `url(${yearImg})`,
-      }}
+    <section
+      className="hero mb-12 min-h-[50vh] bg-cover bg-center"
+      style={{ backgroundImage: `url(${yearImg})` }}
     >
-      <div className="hero-overlay bg-opacity-60"></div>
-      <div className="hero-content text-center text-neutral-content">
+      <div className="hero-overlay bg-black/50"></div>
+      <div className="hero-content text-center text-white">
         <div className="max-w-md">
-          <h1 className="text-2xl font-bold uppercase">Product of the year</h1>
-          <p className="mb-5 text-yellow-600 uppercase">
-            Unmatched Quality, Unrivaled Performance
+          <h2 className="text-2xl font-bold uppercase">Product of the year</h2>
+          <p className="mb-5 uppercase text-yellow-400">
+            Unmatched quality, unrivaled performance
           </p>
-          <Link to="/shop" className="btn glass">
+          <Link to="/products?sort=rating" className="btn glass text-white">
             Shop Now
           </Link>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

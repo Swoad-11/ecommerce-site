@@ -11,9 +11,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <div className="mx-auto bg-gray-100">
-          <RouterProvider router={router} />
-        </div>
+        <RouterProvider router={router} />
       </PersistGate>
     </Provider>
   </React.StrictMode>

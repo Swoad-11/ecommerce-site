@@ -1,2 +1,18 @@
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: light --default;
+}
+
+@theme {
+  --color-primeColor: #33475b;
+  --shadow-testShadow: 0px 0px 54px -13px rgba(0, 0, 0, 0.7);
+}
+
+body {
+  background-color: var(--color-gray-100);
+}
+
+/* Keep the banner carousel dots readable on light images */
+.carousel .control-dots .dot {
+  background: #33475b;
+}

@@ -1,47 +1,22 @@
-import {
-  brand1,
-  brand2,
-  brand3,
-  brand4,
-  brand5,
-  brand6,
-  brand7,
-  brand8,
-  brand9,
-} from "../../../assets/index";
+import { Link } from "react-router-dom";
+import { featuredBrands } from "../../../data/catalog";
 
 const ShopByBrands = () => {
-  const brandImages = [
-    brand1,
-    brand2,
-    brand3,
-    brand4,
-    brand5,
-    brand6,
-    brand7,
-    brand8,
-    brand9,
-  ];
   return (
-    <div className="flex flex-col items-center m-auto p-4 bg-gray-50 rounded">
-      <h2 className="text-lg font-bold mb-4 text-gray-600 uppercase">
+    <div className="flex h-full flex-col items-center rounded-lg bg-white p-4 shadow-sm">
+      <h2 className="mb-4 text-lg font-bold uppercase text-gray-600">
         Shop by Brands
       </h2>
-      <div
-        className="grid grid-cols-3 max-[1024px]:grid-cols-9 max-[768px]:grid-cols-6
-       max-[500px]:grid-cols-4  max-[300px]:grid-cols-3 gap-4"
-      >
-        {brandImages.map((imgSrc, index) => (
-          <a
-            href="https://www.ipsitasoft.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-white rounded-lg p-4 shadow-md hover:shadow-lg
-             hover:shadow-blue-200 w-20 h-20 flex items-center justify-center"
-            key={index}
+      <div className="grid grid-cols-3 gap-4 max-[1024px]:grid-cols-9 max-[768px]:grid-cols-6 max-[500px]:grid-cols-3">
+        {featuredBrands.map(({ name, logo }) => (
+          <Link
+            key={name}
+            to={`/products?brand=${encodeURIComponent(name)}`}
+            title={name}
+            className="flex h-20 w-20 items-center justify-center rounded-lg bg-white p-3 shadow-md transition hover:shadow-lg hover:shadow-blue-200 max-[500px]:h-16 max-[500px]:w-16"
           >
-            <img src={imgSrc} alt={index} width="48" height="48" />
-          </a>
+            <img src={logo} alt={name} className="max-h-full max-w-full object-contain" />
+          </Link>
         ))}
       </div>
     </div>

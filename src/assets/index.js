@@ -57,6 +57,15 @@ import brand7 from "./brands/pngwing.com (7).png";
 import brand8 from "./brands/pngwing.com (8).png";
 import brand9 from "./brands/pngwing.com (9).png";
 import sideImg from "./side.jpg";
+// new arrivals
+import newArrOne from "./products/newArrival/newArrOne.webp";
+import newArrTwo from "./products/newArrival/newArrTwo.webp";
+import newArrThree from "./products/newArrival/newArrThree.webp";
+import newArrFour from "./products/newArrival/newArrFour.webp";
+// states
+import emptyCart from "./emptyCart.png";
+import notFoundGif from "./404.gif";
+import successIcon from "./icon/correct.png";
 
 export {
   // Best Sellers
@@ -87,7 +96,7 @@ export {
   category14,
   category15,
   category16,
-  //ipsita logo
+  // site logo
   logo,
   logo2,
   logotp,
@@ -114,4 +123,11 @@ export {
   brand8,
   brand9,
   sideImg,
+  newArrOne,
+  newArrTwo,
+  newArrThree,
+  newArrFour,
+  emptyCart,
+  notFoundGif,
+  successIcon,
 };

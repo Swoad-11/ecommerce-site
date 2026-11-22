@@ -1,182 +1,169 @@
 import { useState } from "react";
-import { FaHeartCirclePlus, FaCodeCompare } from "react-icons/fa6";
-import { FaThList, FaHome, FaRegUser } from "react-icons/fa";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import toast from "react-hot-toast";
+import { FaHeart, FaThList, FaHome, FaRegUser, FaShoppingCart, FaSearch } from "react-icons/fa";
+import { HiMenu, HiX } from "react-icons/hi";
 import { logo } from "../../../assets/index";
-import { Link } from "react-router-dom";
+import { selectCartCount } from "../../../redux/slices/cartSlice";
+import { selectWishlistIds } from "../../../redux/slices/wishlistSlice";
+import { logout, selectCurrentUser } from "../../../redux/slices/authSlice";
+
+const CountBadge = ({ count }) =>
+  count > 0 ? (
+    <span className="absolute -right-2.5 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white">
+      {count > 99 ? "99+" : count}
+    </span>
+  ) : null;
+
+const SearchForm = ({ onSearch, className = "" }) => {
+  const location = useLocation();
+  const [term, setTerm] = useState(
+    () => new URLSearchParams(location.search).get("q") ?? ""
+  );
+  return (
+    <form
+      role="search"
+      className={`relative ${className}`}
+      onSubmit={(e) => {
+        e.preventDefault();
+        onSearch(term.trim());
+      }}
+    >
+      <FaSearch className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-sm text-gray-400" />
+      <input
+        type="search"
+        value={term}
+        onChange={(e) => setTerm(e.target.value)}
+        aria-label="Search products"
+        placeholder="Search products…"
+        className="block w-full rounded-lg border border-gray-300 bg-white p-2 ps-9 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+      />
+    </form>
+  );
+};
+
+const linkClass = ({ isActive }) =>
+  `relative flex items-center gap-2.5 rounded px-2 py-2 md:p-0 ${
+    isActive ? "font-semibold text-blue-700" : "text-gray-700 hover:text-blue-700"
+  }`;
 
 const Navbar = () => {
-  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const cartCount = useSelector(selectCartCount);
+  const wishCount = useSelector(selectWishlistIds).length;
+  const user = useSelector(selectCurrentUser);
 
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!isMobileMenuOpen);
+  const close = () => setMenuOpen(false);
+
+  const handleSearch = (term) => {
+    navigate(term ? `/products?q=${encodeURIComponent(term)}` : "/products");
+    close();
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    toast("Logged out");
+    close();
+    navigate("/");
   };
 
   return (
-    <nav className="bg-base-200">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-          <img src={logo} className="h-8" alt="Logo" />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+    <header className="sticky top-0 z-30 border-b border-gray-200 bg-white/95 backdrop-blur">
+      <nav className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 p-4">
+        <Link to="/" onClick={close} className="flex items-center gap-3">
+          <img src={logo} className="h-8" alt="" />
+          <span className="whitespace-nowrap text-2xl font-semibold text-[#33475b]">
             TechShop
           </span>
-        </a>
-        <div className="flex md:order-2">
+        </Link>
+
+        <SearchForm onSearch={handleSearch} className="hidden w-full max-w-[15rem] md:order-2 lg:block xl:max-w-xs" />
+
+        <div className="flex items-center gap-4 md:hidden">
+          <NavLink to="/cart" className={linkClass} aria-label="Cart">
+            <FaShoppingCart className="text-lg" />
+            <CountBadge count={cartCount} />
+          </NavLink>
           <button
             type="button"
-            onClick={toggleMobileMenu}
-            className="md:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 me-1"
+            onClick={() => setMenuOpen((o) => !o)}
+            className="rounded-lg p-2 text-2xl text-gray-600 hover:bg-gray-100"
+            aria-controls="main-menu"
+            aria-expanded={menuOpen}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
           >
-            <svg
-              className="w-5 h-5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 20 20"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-              />
-            </svg>
-            <span className="sr-only">Search</span>
-          </button>
-          <div className="relative hidden md:block">
-            <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-              <svg
-                className="w-4 h-4 text-gray-500 dark:text-gray-400"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                />
-              </svg>
-              <span className="sr-only">Search icon</span>
-            </div>
-            <input
-              type="text"
-              id="search-navbar"
-              className="block w-full p-2 ps-10 text-sm text-gray-900 border
-         border-gray-300 rounded-lg bg-gray-50 focus:ring-gray-200 focus:border-blue-500
-          dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
-           dark:focus:ring-gray-200 dark:focus:border-blue-500"
-              placeholder="Search..."
-            />
-          </div>
-          <button
-            type="button"
-            onClick={toggleMobileMenu}
-            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm
-             text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
-            aria-controls="navbar-search"
-            aria-expanded="false"
-          >
-            <span className="sr-only">Open main menu</span>
-            <svg
-              className="w-5 h-5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 17 14"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M1 1h15M1 7h15M1 13h15"
-              />
-            </svg>
+            {menuOpen ? <HiX /> : <HiMenu />}
           </button>
         </div>
+
         <div
-          className={`items-center justify-between w-full md:flex md:w-auto md:order-1 ${
-            isMobileMenuOpen ? "block" : "hidden"
-          }`}
-          id="navbar-search"
+          id="main-menu"
+          className={`${menuOpen ? "block" : "hidden"} w-full md:order-1 md:block md:w-auto`}
         >
-          <div className="relative mt-3 md:hidden">
-            <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-              <svg
-                className="w-4 h-4 text-gray-500"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                />
-              </svg>
-            </div>
-            <input
-              type="text"
-              id="search-navbar"
-              className="block w-full p-2 ps-10 text-sm text-gray-900 border
-         border-gray-300 rounded-lg bg-gray-50 focus:ring-gray-200 focus:border-blue-500
-          dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
-           dark:focus:ring-gray-200 dark:focus:border-blue-500"
-              placeholder="Search..."
-            />
-          </div>
-          <ul
-            className="flex flex-col p-2 md:p-2 pt-2 font-medium md:space-x-8
-           rtl:space-x-reverse md:flex-row md:mt-0"
-          >
+          <SearchForm onSearch={handleSearch} className="mb-2 lg:hidden md:hidden" />
+          <ul className="flex flex-col gap-1 font-medium md:flex-row md:items-center md:gap-5 xl:gap-7">
             <li>
-              <Link
-                to="/"
-                className="flex items-center py-2 px-2 text-gray-200 rounded md:p-0"
-                aria-current="page"
-              >
-                <FaHome className="mr-1" />
-                <span>Home</span>
-              </Link>
+              <NavLink to="/" end onClick={close} className={linkClass}>
+                <FaHome /> Home
+              </NavLink>
             </li>
             <li>
-              <Link
-                className="flex items-center py-2 px-2 text-gray-200 rounded md:p-0"
-                to="/products"
-              >
-                <FaThList className="mr-1" />
-                <span>Products</span>
-              </Link>
+              <NavLink to="/products" onClick={close} className={linkClass}>
+                <FaThList /> Products
+              </NavLink>
             </li>
-            <li className="flex items-center">
-              <Link
-                className="flex items-center py-2 px-2 text-gray-200 rounded md:p-0"
-                to="/wishlist"
-              >
-                <FaHeartCirclePlus className="mr-1" />
-                <span>WishList</span>
-              </Link>
+            <li>
+              <NavLink to="/wishlist" onClick={close} className={linkClass}>
+                <span className="relative">
+                  <FaHeart />
+                  <CountBadge count={wishCount} />
+                </span>
+                Wishlist
+              </NavLink>
             </li>
-            <li className="flex items-center">
-              <Link
-                className="flex items-center py-2 px-2 text-gray-200 rounded md:p-0"
-                to="/login"
-              >
-                <FaRegUser className="mr-1" />
-                <span>Login</span>
-              </Link>
+            <li className="hidden md:block">
+              <NavLink to="/cart" onClick={close} className={linkClass}>
+                <span className="relative">
+                  <FaShoppingCart />
+                  <CountBadge count={cartCount} />
+                </span>
+                Cart
+              </NavLink>
             </li>
+            {user ? (
+              <>
+                <li>
+                  <NavLink to="/profile" onClick={close} className={linkClass}>
+                    <FaRegUser />
+                    <span className="max-w-[8rem] truncate">
+                      {user.name.split(" ")[0]}
+                    </span>
+                  </NavLink>
+                </li>
+                <li className="md:hidden">
+                  <button
+                    type="button"
+                    onClick={handleLogout}
+                    className="px-2 py-2 text-sm text-gray-500 hover:text-red-600 md:p-0"
+                  >
+                    Logout
+                  </button>
+                </li>
+              </>
+            ) : (
+              <li>
+                <NavLink to="/login" onClick={close} className={linkClass}>
+                  <FaRegUser /> Login
+                </NavLink>
+              </li>
+            )}
           </ul>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </header>
   );
 };
 

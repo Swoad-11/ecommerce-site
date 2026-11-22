@@ -1,0 +1,61 @@
+import {
+  category1,
+  category2,
+  category3,
+  category4,
+  category5,
+  category6,
+  category7,
+  category8,
+  category9,
+  category10,
+  category11,
+  category12,
+  category13,
+  category14,
+  category15,
+  category16,
+  brand1,
+  brand2,
+  brand3,
+  brand4,
+  brand5,
+  brand6,
+  brand7,
+  brand8,
+  brand9,
+} from "../assets/index";
+
+export const categories = [
+  { slug: "action-camera", label: "Action Camera", icon: category1 },
+  { slug: "bluetooth-speaker", label: "Bluetooth Speaker", icon: category2 },
+  { slug: "conference-system", label: "Conference System", icon: category3 },
+  { slug: "earphone", label: "Earphone", icon: category4 },
+  { slug: "gaming-console", label: "Gaming Console", icon: category5 },
+  { slug: "gpu", label: "Graphics Card", icon: category6 },
+  { slug: "headphone", label: "Headphone", icon: category7 },
+  { slug: "laptop", label: "Laptop", icon: category8 },
+  { slug: "laptop-battery", label: "Laptop Battery", icon: category9 },
+  { slug: "mobile-phone", label: "Mobile Phone", icon: category10 },
+  { slug: "power-station", label: "Power Station", icon: category11 },
+  { slug: "printer", label: "Printer", icon: category12 },
+  { slug: "router", label: "Router", icon: category13 },
+  { slug: "smart-watch", label: "Smart Watch", icon: category14 },
+  { slug: "tv", label: "TV", icon: category15 },
+  { slug: "vr", label: "VR", icon: category16 },
+];
+
+export const getCategoryLabel = (slug) =>
+  categories.find((c) => c.slug === slug)?.label ?? slug;
+
+export const featuredBrands = [
+  { name: "Acer", logo: brand1 },
+  { name: "Lenovo", logo: brand2 },
+  { name: "Walton", logo: brand3 },
+  { name: "Microsoft", logo: brand4 },
+  { name: "Dell", logo: brand5 },
+  { name: "HP", logo: brand6 },
+  { name: "Toshiba", logo: brand7 },
+  { name: "Gigabyte", logo: brand8 },
+  { name: "ASUS", logo: brand9 },
+];

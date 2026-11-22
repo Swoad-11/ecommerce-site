@@ -1,42 +1,26 @@
 import { svg1, svg2, svg3, svg4, svg5 } from "../../../assets/index";
 
+const perks = [
+  { icon: svg3, label: "Official Product with Warranty" },
+  { icon: svg1, label: "0% EMI on Selected Products" },
+  { icon: svg2, label: "Fast Delivery" },
+  { icon: svg4, label: "Secure Payment" },
+  { icon: svg5, label: "24/7 Live Support" },
+];
+
 const UpSection = () => {
   return (
-    <div
-      className="ups shadow-blue-200 rounded-4 flex flex-row justify-center 
-    mb-12 shadow-md max-w-fit mx-auto p-4 rounded bg-white"
-    >
-      <div className="flex justify-content-start align-items-center mr-6 gap-2">
-        <img src={svg3} className="mx-auto h-8 w-8" alt="" />
-        <p className="text-rubik subtitle2 text-black-marie m-0 text-gray-600">
-          Official Product with Warranty
-        </p>
-      </div>
-      <div className="flex justify-content-start align-items-center mr-6 gap-2">
-        <img src={svg1} className="mx-auto h-8 w-8" alt="" />
-        <p className="text-rubik subtitle2 text-black-marie m-0 text-gray-600">
-          0% EMI on Selected Products
-        </p>
-      </div>
-      <div className="flex justify-content-start align-items-center mr-6 gap-2">
-        <img src={svg2} className="mx-auto h-8 w-8" alt="" />
-        <p className="text-rubik subtitle2 text-black-marie m-0 text-gray-600">
-          Fastest Delivery
-        </p>
-      </div>
-      <div className="flex justify-content-start align-items-center mr-6 gap-2">
-        <img src={svg4} className="mx-auto h-8 w-8" alt="" />
-        <p className="text-rubik subtitle2 text-black-marie m-0 ml-2 text-gray-600">
-          Secure Payment
-        </p>
-      </div>
-      <div className="flex justify-content-start gap-2">
-        <img src={svg5} className="mx-auto h-8 w-8" alt="" />
-        <p className="text-rubik subtitle2 text-black-marie m-0 text-gray-600">
-          24/7 Live Support
-        </p>
-      </div>
-    </div>
+    <ul className="mx-auto mb-12 grid max-w-7xl grid-cols-2 gap-4 px-4 sm:grid-cols-3 lg:grid-cols-5">
+      {perks.map(({ icon, label }) => (
+        <li
+          key={label}
+          className="flex items-center gap-3 rounded-lg bg-white p-4 shadow-sm"
+        >
+          <img src={icon} className="h-8 w-8 shrink-0" alt="" />
+          <span className="text-sm text-gray-600">{label}</span>
+        </li>
+      ))}
+    </ul>
   );
 };
 
