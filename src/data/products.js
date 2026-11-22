@@ -13,9 +13,11 @@ import {
   newArrFour,
 } from "../assets/index";
 
+import { brandProducts } from "./brandProducts";
+
 // Demo catalogue. Every page reads products from here, so swapping this
-// file for an API call later only touches `getProducts`/`getProductBySlug`.
-export const products = [
+// file for an API call later only touches the helpers below.
+const baseProducts = [
   {
     id: "1011",
     slug: "fantech-mars-ii-hq54-wired-gaming-headset",
@@ -276,6 +278,8 @@ export const products = [
     },
   },
 ];
+
+export const products = [...baseProducts, ...brandProducts];
 
 export const getProductBySlug = (slug) =>
   products.find((p) => p.slug === slug);

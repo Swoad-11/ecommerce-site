@@ -74,7 +74,7 @@ Build command: `npm run build`. Output folder: `dist`.
 
 ## Notes
 
-- Product names, prices and specs are demo data.
+- 40 products across 20 brands. Prices and stock are demo values. Product photos are the manufacturers' official images, used here for a non-commercial portfolio demo; all trademarks belong to their owners.
 - No real payment is processed. "Online payment" is only a demo option.
 
 ## Roadmap
